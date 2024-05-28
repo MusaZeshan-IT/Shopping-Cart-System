@@ -18,6 +18,7 @@ const getDefaultCart = function () {
 export const ShopContextProvider = function (props) {
     // Setting the cart items state in the context so I don't have to pass it through one component to another and so on
     const [cartItems, setCartItems] = useState(getDefaultCart())
+    const [subTotal, setSubTotal] = useState(0)
 
     // This function takes the item id and adds its value by one
     const addToCart = function (itemId) {
@@ -33,10 +34,24 @@ export const ShopContextProvider = function (props) {
         })
     }
 
-    console.log(cartItems);
+    const updateCartItemCount = (newAmount, itemId) => {
+        setCartItems((prevCart) => {
+            return { ...prevCart, [itemId]: newAmount }
+        })
+    }
+
+    const getTotalCartAmount = () => {
+        let total = 0
+        for (const cartItem in cartItems) {
+            if (cartItems[cartItem] > 0) {
+                total += cartItems[cartItem] * PRODUCTS[cartItem - 1].price
+            }
+        }
+        return total;
+    }
 
     return (
-        <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+        <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart, updateCartItemCount, getTotalCartAmount }}>
             {props.children}
         </ShopContext.Provider>
     )

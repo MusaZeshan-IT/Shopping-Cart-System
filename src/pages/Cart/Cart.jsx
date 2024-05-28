@@ -1,8 +1,32 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
+import PRODUCTS from '../../helpers/Products'
+import { ShopContext } from '../../context/shop-context';
+import CartItem from '../../components/CartItem/CartItem'
+import './Cart.css'
 
 function Cart() {
+  const { cartItems, getTotalCartAmount } = useContext(ShopContext);
+
   return (
-    <div>Cart</div>
+    <div className="cart">
+      <div>
+        <h1>Your Cart Items</h1>
+      </div>
+      <div className="cartItems">
+        {PRODUCTS.map((product) => {
+          if (cartItems[product.id] > 0) {
+            return (
+              <CartItem data={product}></CartItem>
+            )
+          }
+        })}
+      </div>
+      <div className='checkout'>
+        <p>Subtotal: ${getTotalCartAmount()}</p>
+        <button>Continue Shopping</button>
+        <button>Checkout</button>
+      </div>
+    </div>
   )
 }
 
