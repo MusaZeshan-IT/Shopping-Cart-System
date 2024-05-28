@@ -1,4 +1,5 @@
 import React from 'react'
+import { ShopContext } from '../../context/shop-context'
 
 function Product(props) {
     const { id, productName, price, productImage } = props.data
