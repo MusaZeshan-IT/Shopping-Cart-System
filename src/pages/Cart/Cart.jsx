@@ -3,6 +3,7 @@ import PRODUCTS from '../../helpers/Products'
 import { ShopContext } from '../../context/shop-context';
 import CartItem from '../../components/CartItem/CartItem'
 import './Cart.css'
+import { Link } from 'react-router-dom';
 
 function Cart() {
   const { cartItems, getTotalCartAmount } = useContext(ShopContext);
@@ -21,11 +22,20 @@ function Cart() {
           }
         })}
       </div>
+      {getTotalCartAmount() > 0 ? (
       <div className='checkout'>
         <p>Subtotal: ${getTotalCartAmount()}</p>
-        <button>Continue Shopping</button>
+        <Link to="/">
+          <button>Continue Shopping</button>
+        </Link>
         <button>Checkout</button>
       </div>
+      ) : (
+        <div className='checkout'>
+          <h3>Cart is Empty</h3>
+        </div>
+      )
+    }
     </div>
   )
 }
