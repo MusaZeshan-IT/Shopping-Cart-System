@@ -33,6 +33,8 @@ export const ShopContextProvider = function (props) {
         })
     }
 
+    console.log(cartItems);
+
     return (
         <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
             {props.children}
