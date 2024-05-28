@@ -7,7 +7,7 @@ function Shop() {
   return (
     <div className='shop'>
       <div className='shopTitle'>
-        <h1>MusaZeshan Shop</h1>
+        <h1>MusaZeshan's Shop</h1>
       </div>
       <div className="products">{PRODUCTS.map((product) => {
         return <Product data={product} key={product.id} />

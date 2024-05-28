@@ -23,19 +23,19 @@ function Cart() {
         })}
       </div>
       {getTotalCartAmount() > 0 ? (
-      <div className='checkout'>
-        <p>Subtotal: ${getTotalCartAmount()}</p>
-        <Link to="/">
-          <button>Continue Shopping</button>
-        </Link>
-        <button>Checkout</button>
-      </div>
+        <div className='checkout'>
+          <p>Subtotal: ${getTotalCartAmount()}</p>
+          <Link to="/">
+            <button>Continue Shopping</button>
+          </Link>
+          <button>Checkout</button>
+        </div>
       ) : (
         <div className='checkout'>
           <h3>Cart is Empty</h3>
         </div>
       )
-    }
+      }
     </div>
   )
 }
